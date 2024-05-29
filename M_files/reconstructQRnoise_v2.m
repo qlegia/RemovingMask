@@ -1,10 +1,12 @@
 % solving least square problem using QR factorization
 % need to run ../py_files/recons_mapQR.py to get the output figures
 clear all;
+
+tic
 sigma0 = 0.0;
 
 inst = 1;
-dirname = '../linearRF/';
+dirname = '../mat_files/';
 fname = sprintf('%sLinear_Nside2048_instance%d.mat',dirname,inst);
 
 eval(['load ',fname]);
@@ -13,13 +15,8 @@ org_alm = alm;
 % reconstructed alm
 rec_alm = zeros(size(org_alm));
 
-%loading masked field with axial mask
-%fname_mask = sprintf('%sLinear_masked_Nside2048_instance%d.mat',dirname,inst);
-
 %loading the masked noisy mask
 % noise level
-
-tic 
 
 fac = 1e-4;
 pow = -log10(fac);  % fac = 10^{-power}
@@ -31,10 +28,9 @@ msk_alm = alm;
 maskLmax = 1200; %%%% cross-checked with ../py_files/rand_masked_2.py
 orgLmax = 100;
 
-% loading previously computed optimal sigma values for each m
 
 % directory of all matrices E
-Edir = '../matE_L1max100_L2max900/';
+Edir = '../mat_files/';
 
 Lmax = 100;
 err = zeros(1,Lmax+1);
