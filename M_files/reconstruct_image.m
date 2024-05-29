@@ -7,7 +7,7 @@ rec_alm = zeros(size(org_alm));
 
 
 % directory of all matrices E
-Edir = '../matE_L1max100_L2max900/';
+Edir = '../mat_files/';
 
 LLmax = length(opt_sigs_re);
 err = zeros(1,LLmax);
