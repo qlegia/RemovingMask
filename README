@@ -2,7 +2,8 @@ Project:
    Removing the mask - reconstructing a real-valued field on the sphere from a masked field
 
 Reference:
-   arXiv 
+   J. Hamann, Q.T. Le Gia, I. H. Sloan, R. Womersley, Removing the mask -- reconstructing a scalar field on the sphere from a masked field, 
+   [ arXiv:2309.14815] 
 
 
 Matlab files in M_files/
