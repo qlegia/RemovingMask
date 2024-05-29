@@ -6,6 +6,7 @@ Reference:
    [ arXiv:2309.14815] 
 
 
+=====================================================================================================
 Matlab files in M_files/
 
 reconstructSPG_grp1.m: using SPGL1 algorithm with ||Ea - bv||<=rho
@@ -14,27 +15,25 @@ reconstruct_v3_no_noise.m:% solving least square problem using QR factorization
 
 reconstructQRnoise_v2.m: using QR factorisation, the inv command is raplaced by 1/(1+alph)
 
-main_v9: new approach for finding optimal sigma values
+main_v9: un-used approach for finding optimal sigma values
 
 reconstruct_image(org_alm,orgLmax,msk_alm,maskLmax,fac,opt_sigs_re, opt_sigs_im)
-        reconstruct the image using the optimal sigma values supplied in 
-        opt_sigs_re and opt_sigs_im
-
+        reconstruct the image using the optimal sigma values supplied in opt_sigs_re and opt_sigs_im
+         
 ========================================================================================================  
 Python files in py_files/
 
 noise_field.py: 
 	generate instances of Gaussian random noise field, with
-	the angular power spectrum  
-                C_ell=1 for ell=0,...,50 and -2ell/101 + 2 for ell=51,...,100 
+	the angular power spectrum fac*C_ell, with fac = 1e-2, 1e-3, 1e-4 
+           and  C_ell=1 for ell=0,...,50 and -2ell/101 + 2 for ell=51,...,100 
+        outputs: the Fourier coefficients are stored in
+                 Noise_1e_?_Nside2048_instance1.mat  with ?=2,3,4
 
 rand_masked_Gauss_noise.py: 
 	take the map, add the noise, then apply the axially symmetric mask and 
 	compute the Fourier coefficients.
         Outputs for different noises Upsilon_ell = 1e-2; 1e-3; 1e-4 
-        Masked_noisy__1e_2_Nside2048_instance1.png  
-        Masked_noisy__1e_3_Nside2048_instance1.png  
-        Masked_noisy__1e_4_Nside2048_instance1.png
 
 recons_map2A.py 
    	for QR factorization approach with no noise
@@ -45,10 +44,9 @@ recons_map2A.py
 recons_mapQR.py
    	for QR factorisation with Gaussian noise
    	input: L100_QR_noise.mat from reconstructQRnoise_v2.m
-   	outputs: error_field_QR_gauss_noise_1e-4.png 
-            reconstr_field_QR_gauss_noise_1e-4.png
-            error_field_QR_gauss_noise_1e-2.png
-            reconstr_field_QR_gauss_noise_1e-2.png
+   	outputs: 
+            error_field_QR_gauss_noise_1e-?.png 
+            reconstr_field_QR_gauss_noise_1e-?.png  with ?=2,3,4
 
 recons_mapSPG.py
    	for output from the SPG package
@@ -58,5 +56,32 @@ recons_mapSPG.py
 local_errors.py: 
 	compute local errors inside/outside the mask
         all errors output are written to outputs.txt
+======================================================================================================
 
-mat_files/
+MATLAB mat files in mat_files/
+
+E_L1max100_L2max900_m?.mat with ?=0,1,2,3,...,100
+	are pre-computed matrices E^{(m)} with L1max=100, L2max=900, m=0,1,2,...,100
+	using ...
+
+Linear_Nside2048_instance1.mat
+
+Linear_masked_Nside2048_instance1.mat
+
+Masked_noisy__1e_?_Nside2048_instance1.mat  with ?=2,3,4
+
+Noise_1e_?_Nside2048_instance1.mat  with ?=2,3,4
+
+v_ell0_500_gaussian.mat
+
+=======================================================================================================
+PNG files in png_files/
+
+Masked_noisy__1e_?_Nside2048_instance1.png  with ?=2,3,4
+
+error_field_QR_gauss_noise_1e-?.png      with ?=2,3,4 
+reconstr_field_QR_gauss_noise_1e-?.png
+
+error_field_no_noise_QR.png 
+reconstructed_Gaussian_field_no_noise_QR.png
+
