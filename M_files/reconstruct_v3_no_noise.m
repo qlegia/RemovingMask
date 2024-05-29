@@ -6,7 +6,7 @@ clear all;
 sigma0 = 0.0;
 
 inst = 1;
-dirname = '../linearRF/';
+dirname = '../mat_files/';
 fname = sprintf('%sLinear_Nside2048_instance%d.mat',dirname,inst);
 
 eval(['load ',fname]);
@@ -26,7 +26,7 @@ orgLmax = 100;
 % loading previously computed optimal sigma values for each m
 
 % directory of all matrices E
-Edir = '../matE_L1max100_L2max900/';
+Edir = '../mat_files/';
 
 Lmax = 100;
 err = zeros(1,Lmax+1);
