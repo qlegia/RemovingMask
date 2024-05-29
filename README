@@ -1,0 +1,61 @@
+Project:
+   Removing the mask - reconstructing a real-valued field on the sphere from a masked field
+
+Reference:
+   arXiv 
+
+
+Matlab files in M_files/
+
+reconstructSPG_grp1.m: using SPGL1 algorithm with ||Ea - bv||<=rho
+
+reconstruct_v3_no_noise.m:% solving least square problem using QR factorization
+
+reconstructQRnoise_v2.m: using QR factorisation, the inv command is raplaced by 1/(1+alph)
+
+main_v9: new approach for finding optimal sigma values
+
+reconstruct_image(org_alm,orgLmax,msk_alm,maskLmax,fac,opt_sigs_re, opt_sigs_im)
+        reconstruct the image using the optimal sigma values supplied in 
+        opt_sigs_re and opt_sigs_im
+
+========================================================================================================  
+Python files in py_files/
+
+noise_field.py: 
+	generate instances of Gaussian random noise field, with
+	the angular power spectrum  
+                C_ell=1 for ell=0,...,50 and -2ell/101 + 2 for ell=51,...,100 
+
+rand_masked_Gauss_noise.py: 
+	take the map, add the noise, then apply the axially symmetric mask and 
+	compute the Fourier coefficients.
+        Outputs for different noises Upsilon_ell = 1e-2; 1e-3; 1e-4 
+        Masked_noisy__1e_2_Nside2048_instance1.png  
+        Masked_noisy__1e_3_Nside2048_instance1.png  
+        Masked_noisy__1e_4_Nside2048_instance1.png
+
+recons_map2A.py 
+   	for QR factorization approach with no noise
+   	input:  L100_re_const3.mat from reconstruct_v3_no_noise.m 
+   	ouputs: error_field_no_noise_QR.png 
+                reconstructed_Gaussian_field_no_noise_QR.png
+
+recons_mapQR.py
+   	for QR factorisation with Gaussian noise
+   	input: L100_QR_noise.mat from reconstructQRnoise_v2.m
+   	outputs: error_field_QR_gauss_noise_1e-4.png 
+            reconstr_field_QR_gauss_noise_1e-4.png
+            error_field_QR_gauss_noise_1e-2.png
+            reconstr_field_QR_gauss_noise_1e-2.png
+
+recons_mapSPG.py
+   	for output from the SPG package
+   	input  : L100_SPG_noise.mat from reconstructSPG_noise.m
+   	outputs:
+
+local_errors.py: 
+	compute local errors inside/outside the mask
+        all errors output are written to outputs.txt
+
+mat_files/
