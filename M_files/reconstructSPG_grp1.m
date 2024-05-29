@@ -8,7 +8,7 @@ sigma0 = 0.0;
 addpath('/srv/hdrive/z9701564/old_p/CMB_Pseudo_Cell/OtherMethods/spgl1-2.1');
 % load the Fourier coefficients of the original random field
 inst = 1;
-dirname = '../linearRF/';
+dirname = '../mat_files/';
 fname = sprintf('%sLinear_Nside2048_instance%d.mat',dirname,inst);
 
 eval(['load ',fname]);
@@ -23,7 +23,7 @@ fac = 1e-4;
 pow = -log10(fac);  % fac = 10^{-power}
 
 % load the Fourier coefficients of the noise field
-fname_noise = sprintf('../linearNoise/Noise_1e_%d_Nside2048_instance%d.mat',pow,inst);
+fname_noise = sprintf('%sNoise_1e_%d_Nside2048_instance%d.mat',dirname,pow,inst);
 eval(['load ', fname_noise]);
 noise_alm = alm;
 
@@ -36,7 +36,7 @@ maskLmax = 1200; %%%% cross-checked with ../py_files/rand_masked_2.py
 orgLmax = 100;
 
 % directory of all matrices E
-Edir = '../matE_L1max100_L2max900/';
+Edir = '../mat_files/';
 
 Lmax = 100;
 err = zeros(1,Lmax+1);
