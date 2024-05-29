@@ -1,5 +1,5 @@
 Project:
-   Removing the mask - reconstructing a real-valued field on the sphere from a masked field
+   "Removing the mask - reconstructing a real-valued field on the sphere from a masked field"
 
 Reference:
    J. Hamann, Q.T. Le Gia, I. H. Sloan, R. Womersley, Removing the mask -- reconstructing a scalar field on the sphere from a masked field, 
@@ -10,18 +10,46 @@ Reference:
 Matlab files in M_files/
 
 reconstructSPG_grp1.m: using SPGL1 algorithm with ||Ea - bv||<=rho
+	output: L100_SPG_grp.mat
 
 reconstruct_v3_no_noise.m:% solving least square problem using QR factorization
+	output: L100_re_const3.mat 
 
 reconstructQRnoise_v2.m: using QR factorisation, the inv command is raplaced by 1/(1+alph)
+	output: L100_QR_noise.mat
 
-main_v9: un-used approach for finding optimal sigma values
-
-reconstruct_image(org_alm,orgLmax,msk_alm,maskLmax,fac,opt_sigs_re, opt_sigs_im)
+main_v9: un-used approach for finding optimal sigma values, not competitive compared with QR factorization
+	output:
+	
+reconstruct_image.m
+        function reconstruct_image(org_alm,orgLmax,msk_alm,maskLmax,fac,opt_sigs_re, opt_sigs_im)
         reconstruct the image using the optimal sigma values supplied in opt_sigs_re and opt_sigs_im
-         
+
+compute_vell.m
+        compute the Legendre coefficients for the axial symmetric mask using Gaussian quadrature rule. 
+        Output: v_ell0_500_gaussian.mat
+grule.m
+        Gaussian quadrature rule
+
 ========================================================================================================  
 Python files in py_files/
+
+comp_matEv3.py:
+	compute the matrices E^{(m)} of sizes L1max x L2max for m=0,..,L1max
+	outputs: E_L1max100_L2max900_m?.mat with ?=0,1,2,3,...,100
+
+gen_pbs.py:
+	generate PBS job scripts for high performance cluster computes so that copies of comp_matEv3.py can be
+        run in parallel processors.
+
+coeff_rand_field_v5.py
+	generate instances of Gaussian random field with angular power spectrum
+        C_ell=1 for ell=0,...,50 and -2ell/101 + 2 for ell=51,...,100
+        output: Linear_Nside2048_instance1.mat
+
+rand_masked_2.py
+	reading the axial symmetric mask, produced the masked random field and save the spherical harmonics 
+	coefficients into Linear_masked_Nside2048_instance1.mat
 
 noise_field.py: 
 	generate instances of Gaussian random noise field, with
@@ -50,7 +78,7 @@ recons_mapQR.py
 
 recons_mapSPG.py
    	for output from the SPG package
-   	input  : L100_SPG_noise.mat from reconstructSPG_noise.m
+   	input  : L100_SPG_noise.mat from reconstructSPG_grp1.m
    	outputs:
 
 local_errors.py: 
@@ -62,17 +90,22 @@ MATLAB mat files in mat_files/
 
 E_L1max100_L2max900_m?.mat with ?=0,1,2,3,...,100
 	are pre-computed matrices E^{(m)} with L1max=100, L2max=900, m=0,1,2,...,100
-	using ...
+	using comp_matEv3.py 
 
 Linear_Nside2048_instance1.mat
+       spherical harmonics coefficients of the Gaussian field computed by coeff_rand_field_v5.py
 
 Linear_masked_Nside2048_instance1.mat
+       spherical harmonics coefficients of the masked Gaussian field computed by rand_masked_2.py
 
 Masked_noisy__1e_?_Nside2048_instance1.mat  with ?=2,3,4
+	computed by rand_masked_Gauss_noise.py 
 
 Noise_1e_?_Nside2048_instance1.mat  with ?=2,3,4
+	computed by noise_field.py
 
 v_ell0_500_gaussian.mat
+	Legendre coefficients of the axial symmetric mask, computed by compute_vell.m
 
 =======================================================================================================
 PNG files in png_files/
