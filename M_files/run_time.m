@@ -1,9 +1,11 @@
 % measure running time
 clear all;
-nn = 5
+nn = 10
 for k_exp =1:nn
   t0 = cputime;
-  reconstructQRnoise_v2;
+  %reconstruct_v3_no_noise;
+  %reconstructQRnoise_v2;
+  reconstructSPG_grp1;
   t1 = cputime;
   runtime(k_exp)= t1-t0;
 end  
