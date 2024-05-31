@@ -3,7 +3,6 @@
 % output: L100_SPG_grp.mat
 % need to run ../py_files/recons_mapSPG_grp.py to get the errors of the reconstruction
 clear all;
-tic
 sigma0 = 0.0;
 addpath('/srv/hdrive/z9701564/old_p/CMB_Pseudo_Cell/OtherMethods/spgl1-2.1');
 % load the Fourier coefficients of the original random field
@@ -138,10 +137,9 @@ kap = 0
 org_alm = org_alm(:); % column vector;
 save L100_SPG_grp org_alm rec_alm maskLmax orgLmax pow kap sigma0 
 !cp L100_SPG_grp.mat ../py_files
-toc
 
-% fac    time
-% 0      7.419514 seconds, 6.616540 seconds 
-% 1e-4   7.658449 seconds, 5.924486 seconds
-% 1e-3   7.330527 seconds, 5.774784 seconds 
-% 1e-2   6.197451 seconds, 7.906251 seconds
+% fac    time (average after 10 runs)
+% 0      2.09       
+% 1e-4   2.85
+% 1e-3   2.29 
+% 1e-2   2.08 

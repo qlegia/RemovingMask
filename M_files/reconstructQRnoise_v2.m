@@ -1,8 +1,6 @@
 % solving least square problem using QR factorization
 % need to run ../py_files/recons_mapQR.py to get the output figures
-clear all;
 
-tic
 sigma0 = 0.0;
 
 inst = 1;
@@ -108,14 +106,14 @@ end
 %xlabel('$m$','interpreter','latex')
 %ylabel('$\ell_2$ errors','interpreter','latex')
 rec_alm = rec_alm(:); % save as a column vector
-kap = 0
+kap = 0;
 org_alm = org_alm(:); % column vector;
 save L100_QR_noise org_alm rec_alm maskLmax orgLmax pow kap sigma0 
 !cp L100_QR_noise.mat ../py_files
 
-toc
-%  fac         time (1st run)       time (2nd run)
-% 0            6.242695 seconds (tic; reconstruct_v3_no_noise; toc)
-% 10^{-2}      23.937409 seconds.   6.054489 seconds
-% 10^{-3}      10.464860 seconds.   6.060336 seconds
-% 10^{-4}      7.420839 seconds     5.980529 seconds
+%  fac        time (average over 10 runs in seconds)
+% 0           5.20 
+% 10^{-2}     5.24 
+% 10^{-3}     5.25 
+% 10^{-4}     5.24 
+% 
