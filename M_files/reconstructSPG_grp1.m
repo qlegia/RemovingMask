@@ -139,7 +139,8 @@ save L100_SPG_grp org_alm rec_alm maskLmax orgLmax pow kap sigma0
 !cp L100_SPG_grp.mat ../py_files
 
 % fac    time (average after 10 runs)
-% 0      2.09       
-% 1e-4   2.85
-% 1e-3   2.29 
-% 1e-2   2.08 
+% 0      0.5       
+% 1e-4   0.5
+% 1e-3   0.5 
+% 1e-2   0.5 
+% times for files loading are excluded, using the Matlab profile command, see run_time.m
