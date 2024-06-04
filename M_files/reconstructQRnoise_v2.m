@@ -112,8 +112,8 @@ save L100_QR_noise org_alm rec_alm maskLmax orgLmax pow kap sigma0
 !cp L100_QR_noise.mat ../py_files
 
 %  fac        time (average over 10 runs in seconds)
-% 0           5.20 
-% 10^{-2}     5.24 
-% 10^{-3}     5.25 
-% 10^{-4}     5.24 
-% 
+% 0           0.7 
+% 10^{-2}     0.7 
+% 10^{-3}     0.7 
+% 10^{-4}     0.7 
+% times for files loading are excluded, using the Matlab profile command, see run_time.m
